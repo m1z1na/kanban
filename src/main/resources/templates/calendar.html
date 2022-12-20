@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'/>
+
+    <title>Планировщик | Kanban</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href='/docs/dist/demo-to-codepen.css' rel='stylesheet'/>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.0.0/index.global.min.js'></script>
+    <script src='/docs/dist/demo-to-codepen.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.0.0/locales-all.global.min.js'></script>
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var initialLocaleCode = 'ru';
+
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      locale: initialLocaleCode,
+      weekNumbers: true,
+      navLinks: true, // can click day/week names to navigate views
+      dayMaxEvents: true, // allow "more" link when too many events
+   events: 'http://localhost:8089/test'
+
+    });
+
+    calendar.render();
+
+  });
+
+
+    </script>
+    <style>
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #top {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 40px;
+    font-size: 12px;
+  }
+
+	#calendar, #header, #event  {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+
+        <ul class="nav navbar-nav navbar-left">
+            <li  ><a href="profile">Мои задачи</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li class="active"><a href="calendar">Мой планировщик</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li  ><a href="addtask">Добавить задачу</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    </br>
+                    <input type="submit" value="Выйти"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id='header'>
+    <h1>Планировщик</h1>
+</div>
+<div id='event' title="Create new Event">
+    <form id="event-form">
+        <fieldset>
+
+            <label for="description">Описание:</label>
+            <input type="text" name="description" id="description" value="" size="100"/>
+
+            <br></br>
+            <label for="startdateandtime">Дата начала:</label>
+            <input type="datetime-local" id="startdateandtime"/>
+
+            <label for="enddateandtime">Дата окончания:</label>
+            <input type="date" id="enddate"/>
+
+            <input type="datetime-local" id="enddateandtime"/>
+
+
+            <input type="submit" value="Создать"/>
+        </fieldset>
+    </form>
+</div>
+</br>
+<div id='calendar'></div>
+
+</body>
+
+
+</html>
