@@ -1,14 +1,12 @@
 package Kanban.Model.Enums;
 
 
-//import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 
-public enum Role {
-//    implements
-//} GrantedAuthority {
+public enum Role implements GrantedAuthority {
     ROLE_DEVELOPER, ROLE_TEAMLEAD;
 
-//    @Override
+    @Override
     public String getAuthority() {
         return name();
     }
