@@ -27,7 +27,8 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
 //                        .requestMatchers("/", "/profile", "/calendar", "/registration").hasAnyRole("ROLE_DEVELOPER")
-                        .requestMatchers("/", "/profile", "/calendar", "/registration").hasRole("ROLE_DEVELOPER")
+//                        .requestMatchers("/", "/profile", "/calendar", "/registration").hasRole("ROLE_DEVELOPER")
+                        .requestMatchers("/", "/profile", "/calendar", "/registration").fullyAuthenticated()
                         .requestMatchers("/addtask").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
